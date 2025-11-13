@@ -9,6 +9,18 @@ public class Employee extends Person {
 	private String enterprise;
 	private double salary;
 	
+	public Employee(String lastName, String firstName, int age, String adress, Capital CapitalOfBirth, String enterprise) {
+		super(lastName, firstName, age, adress, CapitalOfBirth);
+		setEnterprise(enterprise);
+		setSalary(salary);
+	}
+	
+	public Employee(String lastName, String firstName, int age, String adress, City CityOfBirth, String enterprise) {
+		super(lastName, firstName, age, adress, CityOfBirth);
+		setEnterprise(enterprise);
+		setSalary(salary);
+	}
+	
 	public Employee(String lastName, String firstName, int age, String adress, Capital CapitalOfBirth, String enterprise, double salary) {
 		super(lastName, firstName, age, adress, CapitalOfBirth);
 		setEnterprise(enterprise);
