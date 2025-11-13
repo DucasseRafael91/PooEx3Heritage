@@ -2,11 +2,11 @@ package fr.fms.entities;
 
 public class Commercial extends Employee {
 	
-	private double percentageRevenue;
-
-	public Commercial(String lastName, String firstName, int age, String adress, Capital CapitalOfBirth,String enterprise, double percentageRevenue) {
+	private double percentageRevenue; 
+	
+	public Commercial(String lastName, String firstName, int age, String adress, Capital capitalOfBirth, String enterprise, double percentageRevenue) {
 		
-		super(lastName, firstName, age, adress, CapitalOfBirth, enterprise);
+		super(lastName, firstName, age, adress, capitalOfBirth, enterprise);
 		setPercentageRevenue(percentageRevenue);
 	}
 
@@ -20,9 +20,7 @@ public class Commercial extends Employee {
 	
 	@Override
 	public String toString() {
-	    return  super.toString() +
-	            ", Entreprise : " + getEnterprise() +
-	            ", Salaire : " + getSalary() ;
+	    return super.toString() + 
+	           ", % CA : " + percentageRevenue;
 	}
-
 }

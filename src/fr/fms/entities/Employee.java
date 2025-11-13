@@ -51,6 +51,10 @@ public class Employee extends Person {
 	
 	@Override
 	public String toString() {
+		if (getSalary() == 0 ) {
+			 return  super.toString() + ", Entreprise : " + getEnterprise();
+			
+		}
 	    return  super.toString() +
 	            ", Entreprise : " + getEnterprise() +
 	            ", Salaire : " + getSalary() ;
