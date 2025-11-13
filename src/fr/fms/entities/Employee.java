@@ -3,45 +3,38 @@ package fr.fms.entities;
 import pooEx1Object.City;
 import pooEx1Object.Person;
 
-public class Employee extends Person {
-	
 
-	private String enterprise;
-	private double salary;
-	
-	public Employee(String lastName, String firstName, int age, String adress, Capital CapitalOfBirth, String enterprise) {
-		super(lastName, firstName, age, adress, CapitalOfBirth);
-		setEnterprise(enterprise);
-	}
-	
-	public Employee(String lastName, String firstName, int age, String adress, City CityOfBirth, String enterprise) {
-		super(lastName, firstName, age, adress, CityOfBirth);
-		setEnterprise(enterprise);
-	}
-	
-	public Employee(String lastName, String firstName, int age, String adress, Capital CapitalOfBirth, String enterprise, double salary) {
-		
-		super(lastName, firstName, age, adress, CapitalOfBirth);
-		
+public class Employee extends Person {
+
+    private String enterprise;
+    private double salary;
+
+    // --- Constructeurs ---
+
+
+    public Employee(String lastName, String firstName, int age, String address, Capital capitalOfBirth, String enterprise, double salary) {
+        super(lastName, firstName, age, address, capitalOfBirth);
+
         if (salary < 0) {
-            throw new RuntimeException("L'age ne peut pas être négatif");
+            throw new RuntimeException("Le salaire ne peut pas être négatif");
         }
-		
-		setEnterprise(enterprise);
-		setSalary(salary);
-	}
-	
-	public Employee(String lastName, String firstName, int age, String adress, City CityOfBirth, String enterprise, double salary) {
-		super(lastName, firstName, age, adress, CityOfBirth);
-		
+
+        setEnterprise(enterprise);
+        setSalary(remuneration(salary, 20));
+    }
+
+    public Employee(String lastName, String firstName, int age, String address, City cityOfBirth, String enterprise, double salary) {
+        super(lastName, firstName, age, address, cityOfBirth);
+
         if (salary < 0) {
-            throw new RuntimeException("L'age ne peut pas être négatif");
+            throw new RuntimeException("Le salaire ne peut pas être négatif");
         }
-        
-		setEnterprise(enterprise);
-		setSalary(salary);
-	}
-	
+
+        setEnterprise(enterprise);
+        setSalary(remuneration(salary, 20));
+    }
+
+    // --- Getters et Setters ---
     public String getEnterprise() {
         return enterprise;
     }
@@ -50,24 +43,26 @@ public class Employee extends Person {
         this.enterprise = enterprise;
     }
 
-	public double getSalary() {
-		return salary;
-	}
+    public double getSalary() {
+        return salary;
+    }
 
-	public void setSalary(double salary) {
-		this.salary = salary;
-	}
-	
-	@Override
-	public String toString() {
-		if (getSalary() == 0 ) {
-			 return  super.toString() + ", Entreprise : " + getEnterprise();
-			
-		}
-	    return  super.toString() +
-	            ", Entreprise : " + getEnterprise() +
-	            ", Salaire : " + getSalary() ;
-	}
+    public void setSalary(double salary) {
+        this.salary = salary;
+    }
 
+    // --- Méthodes ---
+    @Override
+    public String toString() {
+        if (getSalary() == 0) {
+            return super.toString() + ", Entreprise : " + getEnterprise();
+        }
+        return super.toString() + ", Entreprise : " + getEnterprise() + ", Salaire : " + getSalary();
+    }
 
+    @Override
+    public double remuneration(double number, double percentage) {
+        double salary = number - (number * percentage / 100);
+        return salary;
+    }
 }
