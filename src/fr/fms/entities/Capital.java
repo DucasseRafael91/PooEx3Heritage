@@ -9,14 +9,8 @@ public class Capital extends City {
     // Constructeurs
     public Capital(String cityName, String country, int numberOfResidents, String monument) {
         super(cityName, country, numberOfResidents); 
-        this.monument = monument;
+        setMonument(monument);
     }
-
-    public Capital(String nomVille, String pays, String monument) {
-        super(nomVille, pays);
-        this.monument = monument;
-    }
-
 
     public String getMonument() {
         return monument;
