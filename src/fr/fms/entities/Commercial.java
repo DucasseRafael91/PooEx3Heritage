@@ -4,60 +4,58 @@ import pooEx1Object.City;
 import pooEx1Object.Person;
 
 public class Commercial extends Person {
-	
-	private String Enterprise;
-	private double percentageRevenue; 
-	
-	public Commercial(String lastName, String firstName, int age, String adress, Capital capitalOfBirth, String enterprise, double percentageRevenue) {
-		
-		super(lastName, firstName, age, adress, capitalOfBirth);
-		
-        if (percentageRevenue < 0) {
-            throw new RuntimeException("L'age ne peut pas être négatif");
+
+    private String company;
+    private double revenuePercentage;
+
+    public Commercial(String lastName, String firstName, int age, String address, Capital capitalOfBirth, String company, double revenuePercentage) {
+        super(lastName, firstName, age, address, capitalOfBirth);
+
+        if (revenuePercentage < 0) {
+            throw new RuntimeException("The percentage cannot be negative");
         }
-        setEnterprise(enterprise);
-		setPercentageRevenue(percentageRevenue);
-	}
-	
-	public Commercial(String lastName, String firstName, int age, String adress, City cityOfBirth, String enterprise, double percentageRevenue) {
-		
-		super(lastName, firstName, age, adress, cityOfBirth);
-		
-        if (percentageRevenue < 0) {
-            throw new RuntimeException("L'age ne peut pas être négatif");
+        setCompany(company);
+        // on stocke ici le salaire calculé à partir du pourcentage du CA (50000)
+        setRevenuePercentage(remuneration(revenuePercentage, 0));
+    }
+
+    public Commercial(String lastName, String firstName, int age, String address, City cityOfBirth, String company, double revenuePercentage) {
+        super(lastName, firstName, age, address, cityOfBirth);
+
+        if (revenuePercentage < 0) {
+            throw new RuntimeException("The percentage cannot be negative");
         }
-        setEnterprise(enterprise);
-		setPercentageRevenue(percentageRevenue);
-	}
-	
-	public String getEnterprise() {
-		return Enterprise;
-	}
+        setCompany(company);
+        // idem ici : calcul à la création
+        setRevenuePercentage(remuneration(revenuePercentage, 0));
+    }
 
-	public void setEnterprise(String enterprise) {
-		Enterprise = enterprise;
-	}
+    public String getCompany() {
+        return company;
+    }
 
+    public void setCompany(String company) {
+        this.company = company;
+    }
 
-	public double getPercentageRevenue() {
-		return percentageRevenue;
-	}
+    public double getRevenuePercentage() {
+        return revenuePercentage;
+    }
 
-	public void setPercentageRevenue(double percentageRevenue) {
-		this.percentageRevenue = percentageRevenue;
-	}
-	
-	@Override
-	public String toString() {
-	    return super.toString() + getEnterprise() +
-	           ", % CA : " + percentageRevenue;
-	}
+    public void setRevenuePercentage(double revenuePercentage) {
+        this.revenuePercentage = revenuePercentage;
+    }
 
     @Override
-    public double remuneration(double number, double percentage) {
-        double salary = (this.getPercentageRevenue()/100) * 50000;
-        return salary;
+    public String toString() {
+        return super.toString() + company + ", Revenue (€): " + revenuePercentage;
+    }
+
+    @Override
+    public double remuneration(double percentage, double unused) {
+        // chiffre d’affaires moyen fictif : 50 000 €
+        double averageTurnover = 50000;
+        // calcul du salaire à partir du pourcentage du CA
+        return (percentage / 100) * averageTurnover;
     }
 }
-
-
